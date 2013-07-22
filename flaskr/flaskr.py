@@ -4,21 +4,24 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 
-# create our little application
+
+# configuration
+DATABASE = '/tmp/flaskr.db'
+DEBUG = True
+SECRET_KEY = 'development key'
+USERNAME = 'admin'
+PASSWORD = 'default'
+
+# create our little application :)
 app = Flask(__name__)
+app.config.from_object(__name__)
 app.config.from_envvar('config/FLASKR_SETTINGS', silent=True)
 
 # database handling
 def connect_db():
-	'''
-	connects to db
-	'''
     return sqlite3.connect(app.config['DATABASE'])
-
+    
 def init_db():
-	'''
-	initializes db, creates tables
-	'''
     with closing(connect_db()) as db:
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
@@ -69,10 +72,9 @@ def login():
 def logout():
     session.pop('logged_in', None) # dont have to check for usr to 
     flash('You were logged out')   #    be loggedin...sweet!
-    return redirect(url_for('show_entries')
+    return redirect(url_for('show_entries'))
 
-
-
-#start our server
 if __name__ == '__main__':
+    init_db()
     app.run()
+    
