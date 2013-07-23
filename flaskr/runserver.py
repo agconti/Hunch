@@ -1,2 +1,2 @@
-from flaksr import flaksr
+from flaskr import flaskr
 app.run(debug=True)
