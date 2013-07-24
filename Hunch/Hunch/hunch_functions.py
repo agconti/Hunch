@@ -166,7 +166,7 @@ def get_weather():
     # get api password
     my_info = passwords.get_secure_info()
 
-    weather_key = os.environ[weather_key']
+    weather_key = os.environ['weather_key']
     
     # make query to weather underground and pull the current weather conditions
     url = 'http://api.wunderground.com/api/%s/conditions/q/NY/New_York.json' % (weather_key)
