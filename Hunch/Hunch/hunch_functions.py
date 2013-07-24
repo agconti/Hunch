@@ -90,7 +90,7 @@ def dist_convert(dist_meters):
     '''
     feet_conversion = 3.28
     block_conversion = 264
-    return ((dist_meters * feet_conversion) / block_conversion)
+    return str(((dist_meters * feet_conversion) / block_conversion))[:4] #return with a max of 4 decimal places
 
 def connection(url):
     '''
@@ -131,6 +131,9 @@ def find_lunch(search_term):
     for b in data['businesses']:
         #clear out combiner
         combiner[:] = []
+        
+        #convert distance to blocks
+        b['distance'] = dist_convert(b['distance'])
         
         combiner.append(b) # append search results
         combiner.append(business_profile(b['id'])) # append business profile results

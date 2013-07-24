@@ -4,7 +4,24 @@
   {% for r in queried_resturants %}
     <li>
       <h2>{{ r[0]['name'] }}</h2>
-      {{ r[0]['phone'] }}
+      <ul class=entries>
+        <li>Phone: {{ r[0]['display_phone'] }}</li>
+        <li>Blocks away: {{ r[0]['distance'] }}</li>
+        <li>Scored a {{ r[0]['rating'] }} after {{ r[0]['review_count'] }} reviews.</li>
+        <li><img src="{{ r[0]['rating_img_url_large'] }}"></li>
+        <li><img src="{{ r[0]['image_url'] }}"></li>
+        
+        <h4>Reviews:</h4>
+        {% for i in r[1]['reviews'] %}
+        <ul class=entries>
+        <li>
+          <img src="{{ i['user']['image_url'] }}">
+          <br>
+          {{ i['user']['name'] }} says it earned {{ i['rating'] }} stars because: <br>{{ i['excerpt'] }}
+        </li>
+        {% endfor %}
+
+      </ul>
     </li>
   {% else %}
     <li><em>Unbelievable.  Your that picky. Nothing in New York Pleases you.</em>
