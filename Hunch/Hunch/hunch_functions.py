@@ -33,7 +33,7 @@ def yelp_search(search_term):
     
     import oauth2
     import base64
-    import passwords
+    
     import os
     
     #get passwords
@@ -83,7 +83,7 @@ def yelp_business(bid):
     
     import oauth2
     import base64
-    import passwords
+    
     import os
     
     #get passwords
@@ -161,7 +161,7 @@ def get_weather():
     gets current weather forecast from weather underground. 
     '''
     import base64
-    import passwords
+    
     import os
     # get api password
     my_info = passwords.get_secure_info()
