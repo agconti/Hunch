@@ -1,6 +1,31 @@
 #Hunch Functions 
 #AGC 2013
 
+###########################################################
+# Work Hourse Functions
+
+def connection(url):
+    '''
+    connects to yelp to extract data
+    '''
+    import urllib
+    import urllib2
+    import json
+    
+    try:
+        conn = urllib2.urlopen(url, None)
+        try:
+            data = json.loads(conn.read())
+        finally:
+            conn.close()
+    except urllib2.HTTPError, error:
+        data = json.loads(error.read())
+    
+    return data
+
+###########################################################
+# Yelp API Functions
+
 def yelp_search(search_term):   
     """
     signs a yelp search request using the oauth2 library.
@@ -93,25 +118,6 @@ def dist_convert(dist_meters):
     block_conversion = 264
     return str(((dist_meters * feet_conversion) / block_conversion))[:4] #return with a max of 4 decimal places
 
-def connection(url):
-    '''
-    connects to yelp to extract data
-    '''
-    import urllib
-    import urllib2
-    import json
-    
-    try:
-        conn = urllib2.urlopen(url, None)
-        try:
-            data = json.loads(conn.read())
-        finally:
-            conn.close()
-    except urllib2.HTTPError, error:
-        data = json.loads(error.read())
-    
-    return data
-
 def business_profile(bid):
     '''
     gets information specific to the business
@@ -144,4 +150,32 @@ def find_lunch(search_term):
 
     return queried_resturants
 
-        
+###################################################################
+# Weather Underground Functions
+
+def get_weather():
+    '''
+    gets current weather forecast from weather underground. 
+    '''
+    import base64
+    import passwords
+    # get api password
+    my_info = passwords.get_secure_info()
+
+    weather_key = base64.b64decode(my_info['weather_key'])
+    
+    # make query to weather underground and pull the current weather conditions
+    url = 'http://api.wunderground.com/api/%s/conditions/q/NY/New_York.json' % (weather_key)
+    data = connection(url)['current_observation']
+    return data
+
+def good_enough_to_walk(data):
+    '''
+    Is it a good day for a walk? Let's find out.
+    '''
+    outside_day = False
+
+    # evaluate the current weather conditions to see if walking is acceptable
+    if (45 < data['feelslike_f'] > 85) and data['precip_1hr_in'] == '0.00':
+        outside_day = True
+    return outside_day
