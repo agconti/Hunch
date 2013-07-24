@@ -2,7 +2,65 @@
 {% block body %}
   <ul class=entries>
   {% for r in queried_resturants %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+var map;
+var brooklyn = new google.maps.LatLng(40.6743890, -73.9455);
+
+var MY_MAPTYPE_ID = 'custom_style';
+
+function initialize() {
+
+  var featureOpts = [
+    {
+      stylers: [
+        { hue: '#890000' },
+        { visibility: 'simplified' },
+        { gamma: 0.5 },
+        { weight: 0.5 }
+      ]
+    },
+    {
+      elementType: 'labels',
+      stylers: [
+        { visibility: 'off' }
+      ]
+    },
+    {
+      featureType: 'water',
+      stylers: [
+        { color: '#890000' }
+      ]
+    }
+  ];
+
+  var mapOptions = {
+    zoom: 12,
+    center: brooklyn,
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+    },
+    mapTypeId: MY_MAPTYPE_ID
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  var styledMapOptions = {
+    name: 'Custom Style'
+  };
+
+  var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+
+  map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
     <li>
+    </li>
+    <li><div id="map-canvas"></div></li>
         <table class=entries>
           <!--<tr>
           <th><h2>{{ r[0]['name'] }}</h2></th>
@@ -13,14 +71,14 @@
             </td>
             <td>
                 <p>
-                  <h2>{{ r[0]['name'] }}</h2>
+                  <a href="{{ r[0]['url'] }}"><h2>{{ r[0]['name'] }}</h2></a>
                   <img src="{{ r[0]['rating_img_url_small'] }}" style='display: inline-block; float: right; padding-right: 7%;'>
                   <br><a href="tel://{{ r[0]['phone'] }}">{{ r[0]['display_phone'] }}</a>
                   <br>{{ r[0]['location']['display_address'][0] }}
                   <br>{{ r[0]['location']['display_address'][1] }}
                   <br>{{ r[0]['distance'] }} blocks away
-                  <br>{{ r[0]['rating'] }} stars after {{ r[0]['review_count'] }} reviews<br>
-              </p>
+                  <br>{{ r[0]['rating'] }} stars after {{ r[0]['review_count'] }} reviews 
+              </p>  
             </td>
           </tr>
           <tr>
@@ -29,13 +87,13 @@
             </td>
           </tr>
           {% for i in r[1]['reviews'] %}
-          <tr>
+          <tr class=reviews>
             <td>
               <img src="{{ i['user']['image_url'] }}">
             </td>
             <td>
-              <br>{{ i['user']['name'] }} gave it {{ i['rating'] }} stars:
-              <br>"{{ i['excerpt'] }}"
+              <h5>{{ i['user']['name'] }} gave it {{ i['rating'] }} stars:</h5>
+              <i>"{{ i['excerpt'] }}"</i>
             </td>
           </tr>
           {% endfor %}
