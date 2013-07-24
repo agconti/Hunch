@@ -19,11 +19,11 @@ def yelp_search(search_term):
     token_secret = base64.b64decode(my_info['Token_Secret'])
     
     
-    #set querry vars
+    #set query vars
     reonomy_loc = '40.749281,-73.994369' # lat long coordinates
     distance = '400'                     # 5 blocks in meters
     
-    #set querry
+    #set query
     url = ('http://api.yelp.com/v2/search?' \
             'sort=2&' \
             'term=%s&' \
@@ -32,7 +32,7 @@ def yelp_search(search_term):
              %
             (search_term, reonomy_loc, distance))
     
-    # use oauth2 to sign request and make querry
+    # use oauth2 to sign request and make query
     consumer = oauth2.Consumer(consumer_key, consumer_secret)
     oauth_request = oauth2.Request('GET', url, {})
     oauth_request.update({'oauth_nonce': oauth2.generate_nonce(),
@@ -68,7 +68,7 @@ def yelp_business(bid):
     #set querry
     url = ('http://api.yelp.com/v2/business/%s' % bid)
     
-    # use oauth2 to sign request and make querry
+    # use oauth2 to sign request and make query
     consumer = oauth2.Consumer(consumer_key, consumer_secret)
     oauth_request = oauth2.Request('GET', url, {})
     oauth_request.update({'oauth_nonce': oauth2.generate_nonce(),
@@ -112,23 +112,29 @@ def connection(url):
     return data
 
 def business_profile(bid):
+    '''
+    gets information specific to the business
+    '''
     profile = connection(yelp_business(bid))
-    for r in profile['reviews']:
-        print "Rating=[%s] Review: %s" % (r['rating'], r['excerpt'])
 
 def find_lunch(search_term):
     '''
-    querries yelp to get a list of delicous resturants
+    queries yelp to get a list of delicious restaurants
     '''
-    
+    queried_resturants = {}
     #get search data from data from yelp
     data = connection(yelp_search(search_term))
     
-    #explore data
+    #extract data
+    combiner = []
     for b in data['businesses']:
-        print ('Name=[%s], Phone # [%s], dist=[%.2f blocks], Rating [%s] stars from %s reviews' \
-               %(b['name'], b['display_phone'], dist_convert(b['distance']), b['rating'], b['review_count']))
+        combiner[:] = []
+        combiner.append(b)
         #get business ratings
-        business_profile(b['id'])
-        print '\n[----Next Business-----------------] \n'
+        combiner.append(business_profile(b['id']))
+        queried_resturants[b['name']] = combiner
+        break # limit to 1 query for now
+
+    return queried_resturants
+
         
