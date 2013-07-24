@@ -4,9 +4,6 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from contextlib import closing
 import hunch_functions as hf
 
-# config
-DEBUG = True
-
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -17,7 +14,7 @@ app.config.from_envvar('config/HUNCH_SETTINGS', silent=True)
 def home():
     return render_template('home.html')
 
-@app.route('/add', methods=['POST'])
+@app.route('/results', methods=['POST'])
 def search_querry():
     #first test return single business rendered
     if request.method == 'POST':
@@ -46,7 +43,7 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    import os  
-    port = int(os.environ.get('PORT', 33507)) 
-    app.run(host='0.0.0.0', port=port)
-    
+        #import os  
+        #port = int(os.environ.get('PORT', 33507)) 
+        #app.run(host='0.0.0.0', port=port)
+        app.run(debug=True)

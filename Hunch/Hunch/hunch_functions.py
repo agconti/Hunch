@@ -25,10 +25,11 @@ def yelp_search(search_term):
     
     #set query
     url = ('http://api.yelp.com/v2/search?' \
+            'limit=5&' \
             'sort=2&' \
-            'term=%s&' \
-            'll=%s&' \
-            'radius_filter=%s'\
+            'term=%s&'\
+            'll=%s&'  \
+            'radius_filter=%s' \
              %
             (search_term, reonomy_loc, distance))
     
@@ -86,7 +87,7 @@ def yelp_business(bid):
 
 def dist_convert(dist_meters):
     '''
-    takes a distance in meteres and returns a distance in NYC Blocks
+    takes a distance in meters and returns a distance in NYC Blocks
     '''
     feet_conversion = 3.28
     block_conversion = 264

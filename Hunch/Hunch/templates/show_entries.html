@@ -4,43 +4,45 @@
   {% for r in queried_resturants %}
     <li>
         <table class=entries>
-        <tr>
-        <th><h2>{{ r[0]['name'] }}</h2></th>
-        </tr>
-        <tr>
-        <td><img src="{{ r[0]['image_url'] }}"></td>
-        <td>
-        <p>Phone: {{ r[0]['display_phone'] }}<br>Blocks away: {{ r[0]['distance'] }}<br>Scored a {{ r[0]['rating'] }} after {{ r[0]['review_count'] }} reviews.
-        </p>
-        </td>
-        </tr>
-        <tr>
-        <td><img src="{{ r[0]['rating_img_url_large'] }}" style='display: intdne-block;'></td>
-        </tr>
+          <!--<tr>
+          <th><h2>{{ r[0]['name'] }}</h2></th>
+          </tr>-->
+          <tr>
+            <td>
+              <a href="{{ r[0]['url'] }}"><img src="{{ r[0]['image_url'] }}"></a>
+            </td>
+            <td>
+                <p>
+                  <h2>{{ r[0]['name'] }}</h2>
+                  <img src="{{ r[0]['rating_img_url_small'] }}" style='display: inline-block; float: right; padding-right: 7%;'>
+                  <br><a href="tel://{{ r[0]['phone'] }}">{{ r[0]['display_phone'] }}</a>
+                  <br>{{ r[0]['location']['display_address'][0] }}
+                  <br>{{ r[0]['location']['display_address'][1] }}
+                  <br>{{ r[0]['distance'] }} blocks away
+                  <br>{{ r[0]['rating'] }} stars after {{ r[0]['review_count'] }} reviews<br>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h2 style='float: left;'>Reviews:</h4>
+            </td>
+          </tr>
+          {% for i in r[1]['reviews'] %}
+          <tr>
+            <td>
+              <img src="{{ i['user']['image_url'] }}">
+            </td>
+            <td>
+              <br>{{ i['user']['name'] }} gave it {{ i['rating'] }} stars:
+              <br>"{{ i['excerpt'] }}"
+            </td>
+          </tr>
+          {% endfor %}
         </table>
-
-        <h2>{{ r[0]['name'] }}</h2>
-        <li><img src="{{ r[0]['image_url'] }}"></li>
-        <li>Phone: {{ r[0]['display_phone'] }}</li>
-        <li>Blocks away: {{ r[0]['distance'] }}</li>
-        <li>Scored a {{ r[0]['rating'] }} after {{ r[0]['review_count'] }} reviews.</li>
-        <li><img src="{{ r[0]['rating_img_url_large'] }}" style='float: left;'></li>
-        
-        
-        <h4>Reviews:</h4>
-        {% for i in r[1]['reviews'] %}
-        <ul class=entries>
-        <li>
-          <img src="{{ i['user']['image_url'] }}">
-          <br>
-          {{ i['user']['name'] }} gave it {{ i['rating'] }} stars.<br>"{{ i['excerpt'] }}"
-        </li>
-        {% endfor %}
-
-      </ul>
     </li>
   {% else %}
-    <li><em>Unbelievable.  You'reviews that picky. Nothing in New York Pleases you.</em>
+    <li><em>Unbelievable.  You're that picky. Nothing in New York Pleases you.</em>
   {% endfor %}
   </ul>
 {% endblock %}

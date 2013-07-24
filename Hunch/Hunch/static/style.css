@@ -8,9 +8,10 @@ h2              { font-size: 1.2em; }
                   padding: 0.8em; background: white; }
 .entries        { list-style: none; margin: 0; padding: 0; }
 .entries li     { margin: 0.8em 1.2em; }
-.entries li h2  { margin-left: -1em; }
+.entries li h2  {  }
 .entries li img { float: left; }
-.entries p 		{ text-align: left; margin-left: 0px;}
+.entries li p 	{ text-align: left; margin-left: 0px;}
+.entries td		{ width: 30%;}
 .add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
 .add-entry dl   { font-weight: bold; }
 .metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
