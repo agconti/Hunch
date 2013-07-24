@@ -33,13 +33,9 @@ def yelp_search(search_term):
     
     import oauth2
     import base64
-    
     import os
     
-    #get passwords
-    my_info = passwords.get_secure_info()
-    #'decrypt passwords'
-
+    #pull passwords from heroku enviroment passwords
     consumer_key = os.environ['Consumer_Key']
     consumer_secret = os.environ['Consumer_Secret']
     token = os.environ['Token']
@@ -83,12 +79,10 @@ def yelp_business(bid):
     
     import oauth2
     import base64
-    
     import os
     
-    #get passwords
-    my_info = passwords.get_secure_info()
-    #'decrypt passwords'
+    
+    #pull passwords from heroku enviroment passwords
     consumer_key = os.environ['Consumer_Key']
     consumer_secret = os.environ['Consumer_Secret']
     token = os.environ['Token']
@@ -161,11 +155,9 @@ def get_weather():
     gets current weather forecast from weather underground. 
     '''
     import base64
-    
     import os
+    
     # get api password
-    my_info = passwords.get_secure_info()
-
     weather_key = os.environ['weather_key']
     
     # make query to weather underground and pull the current weather conditions
