@@ -34,14 +34,16 @@ def yelp_search(search_term):
     import oauth2
     import base64
     import passwords
+    import os
     
     #get passwords
     my_info = passwords.get_secure_info()
     #'decrypt passwords'
-    consumer_key = base64.b64decode(my_info['Consumer_Key'])
-    consumer_secret = base64.b64decode(my_info['Consumer_Secret'])
-    token = base64.b64decode(my_info['Token'])
-    token_secret = base64.b64decode(my_info['Token_Secret'])
+
+    consumer_key = os.environ['Consumer_Key']
+    consumer_secret = os.environ['Consumer_Secret']
+    token = os.environ['Token']
+    token_secret = os.environ['Token_Secret']
     
     
     #set query vars
@@ -82,14 +84,15 @@ def yelp_business(bid):
     import oauth2
     import base64
     import passwords
+    import os
     
     #get passwords
     my_info = passwords.get_secure_info()
     #'decrypt passwords'
-    consumer_key = base64.b64decode(my_info['Consumer_Key'])
-    consumer_secret = base64.b64decode(my_info['Consumer_Secret'])
-    token = base64.b64decode(my_info['Token'])
-    token_secret = base64.b64decode(my_info['Token_Secret'])
+    consumer_key = os.environ['Consumer_Key']
+    consumer_secret = os.environ['Consumer_Secret']
+    token = os.environ['Token']
+    token_secret = os.environ['Token_Secret']
     
     #set querry
     url = ('http://api.yelp.com/v2/business/%s' % bid)
@@ -159,10 +162,11 @@ def get_weather():
     '''
     import base64
     import passwords
+    import os
     # get api password
     my_info = passwords.get_secure_info()
 
-    weather_key = base64.b64decode(my_info['weather_key'])
+    weather_key = os.environ[weather_key']
     
     # make query to weather underground and pull the current weather conditions
     url = 'http://api.wunderground.com/api/%s/conditions/q/NY/New_York.json' % (weather_key)
