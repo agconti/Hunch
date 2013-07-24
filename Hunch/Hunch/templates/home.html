@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+    <form action="{{ url_for('search_querry') }}" method=post class=add-entry>
+      <dl>
+        <dt>What do you feel like?:
+        <dd><input type=text size=30 name=search>
+        <dd><input type=submit value="Let's Eat!">
+      </dl>
+    </form>
+{% endblock %}
