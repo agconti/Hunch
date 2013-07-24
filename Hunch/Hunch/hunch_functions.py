@@ -115,24 +115,27 @@ def business_profile(bid):
     '''
     gets information specific to the business
     '''
-    profile = connection(yelp_business(bid))
+    return connection(yelp_business(bid))
+    
 
 def find_lunch(search_term):
     '''
     queries yelp to get a list of delicious restaurants
     '''
-    queried_resturants = {}
+    queried_resturants = []
     #get search data from data from yelp
     data = connection(yelp_search(search_term))
     
     #extract data
     combiner = []
     for b in data['businesses']:
+        #clear out combiner
         combiner[:] = []
-        combiner.append(b)
-        #get business ratings
-        combiner.append(business_profile(b['id']))
-        queried_resturants[b['name']] = combiner
+        
+        combiner.append(b) # append search results
+        combiner.append(business_profile(b['id'])) # append business profile results
+        
+        queried_resturants.append(combiner) # package for later access
         break # limit to 1 query for now
 
     return queried_resturants
