@@ -46,6 +46,11 @@
     <p class=weather><img src="{{ weather['icon_url'] }}"></p>
     <p class=weather>Woah, the weather is looking a little rough!!</p>
     <p class=weather>Order in == Win win.</p>
+    <p class=weather>Try this on for size</p>
+    <p class=weather>
+      <a href='http://www.seamless.com/'><img src="{{ url_for('static', filename='seamless.jpg') }}"></a>
+      <a href='https://www.grubhub.com/'><img src="{{ url_for('static', filename='grubhub.png') }}"></a>'
+    </p>
     {% endif %}
     {% endfor %}
 {% else %}
