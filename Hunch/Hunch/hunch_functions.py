@@ -4,9 +4,10 @@
 ###########################################################
 # Work Hourse Functions
 
+
 def connection(url):
     '''
-    connects to yelp to extract data
+    connects to api source to extract data
     '''
     import urllib
     import urllib2
@@ -35,13 +36,22 @@ def yelp_search(search_term):
     import base64
     import os
     
+    
+    import passwords
+    #get passwords
+    my_info = passwords.get_secure_info()
+    #'decrypt passwords'
+    consumer_key = base64.b64decode(my_info['Consumer_Key'])
+    consumer_secret = base64.b64decode(my_info['Consumer_Secret'])
+    token = base64.b64decode(my_info['Token'])
+    token_secret = base64.b64decode(my_info['Token_Secret'])
     #pull passwords from heroku enviroment passwords
-    consumer_key = os.environ['Consumer_Key']
-    consumer_secret = os.environ['Consumer_Secret']
-    token = os.environ['Token']
-    token_secret = os.environ['Token_Secret']
+    #consumer_key = os.environ['Consumer_Key']
+    #consumer_secret = os.environ['Consumer_Secret']
+    #token = os.environ['Token']
+    #token_secret = os.environ['Token_Secret']
     
-    
+
     #set query vars
     reonomy_loc = '40.749281,-73.994369' # lat long coordinates
     distance = '400'                     # 5 blocks in meters
@@ -82,11 +92,19 @@ def yelp_business(bid):
     import os
     
     
+    import passwords
+    #get passwords
+    my_info = passwords.get_secure_info()
+    #'decrypt passwords'
+    consumer_key = base64.b64decode(my_info['Consumer_Key'])
+    consumer_secret = base64.b64decode(my_info['Consumer_Secret'])
+    token = base64.b64decode(my_info['Token'])
+    token_secret = base64.b64decode(my_info['Token_Secret'])
     #pull passwords from heroku enviroment passwords
-    consumer_key = os.environ['Consumer_Key']
-    consumer_secret = os.environ['Consumer_Secret']
-    token = os.environ['Token']
-    token_secret = os.environ['Token_Secret']
+    #consumer_key = os.environ['Consumer_Key']
+    #consumer_secret = os.environ['Consumer_Secret']
+    #token = os.environ['Token']
+    #token_secret = os.environ['Token_Secret']
     
     #set querry
     url = ('http://api.yelp.com/v2/business/%s' % bid)
@@ -154,11 +172,16 @@ def get_weather():
     '''
     gets current weather forecast from weather underground. 
     '''
-    import base64
+    import base64   
     import os
     
+    import passwords
+    #get passwords
+    my_info = passwords.get_secure_info()
+    #'decrypt passwords'
+    weather_key = base64.b64decode(my_info['weather_key'])
     # get api password
-    weather_key = os.environ['weather_key']
+    #weather_key = os.environ['weather_key']
     
     # make query to weather underground and pull the current weather conditions
     url = 'http://api.wunderground.com/api/%s/conditions/q/NY/New_York.json' % (weather_key)
