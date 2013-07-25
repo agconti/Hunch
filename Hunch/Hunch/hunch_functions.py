@@ -198,3 +198,17 @@ def good_enough_to_walk(data):
     if (45 < data['feelslike_f'] > 85) and data['precip_1hr_in'] == '0.00':
         outside_day = True
     return outside_day
+
+def get_a_hunch():
+    '''
+    finds a random lunch for you when you cant decide
+    '''
+    from random import choice
+    words = [
+             'soup', 'coffee', 'burger',
+             'Asian', 'deli', 'bagel',
+             'shrimp', 'oyster', 'seafood',
+             'danger', 'tease', 'frozen',
+             'cold brew','cronut', 'spicy'
+             ]
+    return choice(words)

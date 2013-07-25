@@ -4,6 +4,31 @@ h1, h2          { font-family: 'Georgia', serif; margin: 0; }
 h1              { border-bottom: 2px solid #eee; }
 h2              { font-size: 1.2em; }
 
+#hunch_button	{
+				  border: 1px solid #A5A5A5;
+				  background: #377ba8;
+				  color: white;
+				  font: bold 11px 'Trebuchet MS';
+				  padding: 11px;
+				  cursor: pointer;
+				  -webkit-border-radius: 12px;
+				}
+#search_tagline {font-family: 'Georgia', serif; margin: 0;color: #377ba8; padding-right: 4px;}
+
+#search_button	{
+				  border: 1px solid #377ba8;
+				  background: #eee;
+				  color: #377ba8;
+				  font: bold 10px 'Trebuchet MS';
+				  padding: 4px;
+				  cursor: pointer;
+				  -webkit-border-radius: 4px;
+				}
+
+#search_dt      {padding-top: 2px; padding-right: 3px;}
+
+#results_header { margin: 0; color: #377ba8; font: bold 1.65em 'Georgia', serif; padding-top: 6px;}
+
 .page           { margin: 2em auto; width: 35em; border: 5px solid #ccc;
                   padding: 0.8em; background: white; }
 .entries        { list-style: none; margin: 0; padding: 0; }
@@ -18,6 +43,23 @@ h2              { font-size: 1.2em; }
 
 .weather 		{text-align: center; font-weight: bold;}
 
-.metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
-                  margin-bottom: 1em; background: #fafafa; }
+.footer			{text-align: center; padding-top:5px; width: 100%; background: #377ba8; margin-bottom: 0em;}
+.footer p 		{display: inline-block; -webkit-margin-after: 0;}
+
+.footer p a 	{font-family: 'Georgia', serif; 
+					margin: 0; 
+					text-align: center; 
+					color: #fafafa; 
+					font-size: 1.8em; 
+					text-decoration: none;
+				}
+
+#sign			{font-family: 'Georgia', serif; 
+					margin: 0; 
+					text-decoration: none; 
+					font-size: 0.4em; 
+					padding-top: 6px;
+				}
+
+.metanav        { text-align: right; font-size: 0.8em; padding: 0.3em; background: #fafafa; }
 .error          { background: #f0d6d6; padding: 0.5em; }

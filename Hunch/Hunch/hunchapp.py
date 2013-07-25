@@ -16,11 +16,28 @@ def home():
 
 @app.route('/results', methods=['POST'])
 def search_querry():
-    #first test return single business rendered
+    '''
+    finds the best lunch based on your search term
+    '''
     if request.method == 'POST':
         queried_resturants = hf.find_lunch(request.form['search'])
         weather = hf.get_weather()
         weather_bool = hf.good_enough_to_walk(weather)
+    return render_template(
+                            'show_entries.html', 
+                            queried_resturants=queried_resturants, 
+                            weather=weather, 
+                            walking_day=weather_bool
+                            )
+
+@app.route('/results')
+def random_search_querry():
+    '''
+    randomly searches for a lunch for you 
+    '''
+    queried_resturants = hf.find_lunch(hf.get_a_hunch())
+    weather = hf.get_weather()
+    weather_bool = hf.good_enough_to_walk(weather)
     return render_template(
                             'show_entries.html', 
                             queried_resturants=queried_resturants, 

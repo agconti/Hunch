@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
-<title>I've got a hunch this will work for you</title>
+
+{% block heading %}
+<p id='results_header'>I've got a hunch these will work for you:<p>
+{% endblock %}
+
 {% block body %}
 {% if queried_resturants != None %}
   <ul class=entries>
@@ -62,6 +66,11 @@
 {% else %}
     <li><em>Unbelievable.  You're that picky. Nothing in New York Pleases you.</em>
 {% endif %}
-    <li class=weather><a href="{{ url_for('home') }}"><h1>Get another Hunch!</h1><a></li>
-  </ul>
+    </ul>
+
+    <div class=footer>
+    <p><a href="{{ url_for('home') }}">Get a new Hunch! | </a><a href="{{ url_for('home') }}">Get the next Hunch!</a></p>
+    <p id=sign><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='agconti.com'>Checkout Andrew Conti</a></p>
+    </div>
+  
 {% endblock %}
