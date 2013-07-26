@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from contextlib import closing
 import hunch_functions as hf
 
- 
+
 
 # instantiate hunch
 app = Flask(__name__)
@@ -22,7 +22,8 @@ def search_querry():
     finds the best lunch based on your search term
     '''
     if request.method == 'POST':
-        # for iterating through results
+        if request.form['search'] == '':
+            return render_template('home.html')
         queried_resturants = hf.find_lunch(request.form['search'])[0]
         weather = hf.get_weather()
         weather_bool = hf.good_enough_to_walk(weather)
@@ -31,7 +32,8 @@ def search_querry():
                                 queried_resturants=queried_resturants, 
                                 weather=weather, 
                                 walking_day=weather_bool,
-                                search_val=request.form['search']
+                                search_val=request.form['search'],
+                                i = 0
                                 )
 
 @app.route('/results')
@@ -48,20 +50,29 @@ def random_search_querry():
                             weather=weather, 
                             walking_day=weather_bool
                             )
-@app.route('/results', methods=['POST'])
-def more_results(past_val):
-    import sys
-    sys.stdout.write(past_val)
-    queried_resturants = hf.find_lunch(past_val)[1] 
-    weather = hf.get_weather()
-    weather_bool = hf.good_enough_to_walk(weather)
-    return render_template(
-                           'show_entries.html', 
-                            queried_resturants=queried_resturants, 
-                            weather=weather, 
-                            walking_day=weather_bool,
-                            search_val=past_val
-                           )
+@app.route('/results/more_<past_val>_hunches<ind>', methods=['POST'])
+def more_results(past_val, ind):
+    
+    if request.form["action"] == "Get the next Hunch!":
+        ind = int(ind)
+        ind += 1 
+
+        import sys
+        sys.stdout.write("\n" + past_val + '\n')
+        sys.stdout.write("\ntext\n")
+
+        queried_resturants = hf.find_lunch(past_val)
+        queried_resturants = queried_resturants[ind]
+        weather = hf.get_weather()
+        weather_bool = hf.good_enough_to_walk(weather)
+        return render_template(
+                               'show_entries.html', 
+                                queried_resturants=queried_resturants, 
+                                weather=weather, 
+                                walking_day=weather_bool,
+                                search_val=past_val,
+                                i=ind 
+                               )
 
 
 

@@ -68,28 +68,14 @@
 {% endif %}
     </ul>
 <div class=footer>
-<!--
-  <form action="{{ url_for('home') }}" method=post>
-    <dl>
-      <dd id='search_dt'><input type=hidden value="{{ search_val }}" name='past_val' >
-      <dd id='search_dt'><input id='next_hutch' type=submit value="Get the next Hunch!">
-    </dl>
+  <form action="{{ url_for('home') }}">
+    <input id='next_hutch' type=submit value="Get a new Hunch!">
   </form>
-
-    <form action="{{ url_for('home') }}" method=post>
-    <dl>
-      <dd id='search_dt'><input type=hidden value="{{ search_val }}" name='past_val' >
-      <dd id='search_dt'><input id='next_hutch' type=submit value="Get a new Hunch!">
-    </dl>
+  <form action="{{ url_for('more_results', past_val=search_val, ind=i ) }}" method=post>
+    <input id='next_hutch' type=submit value="Get the next Hunch!" name='action'>
   </form>
--->
-  <form action="{{ url_for('home') }}"><input id='next_hutch' type=submit value="Get a new Hunch!"></form>
-  <form action="{{ url_for('more_results', past_val=search_val) }}"><input id='next_hutch' type=submit value="Get the next Hunch!"></form>
-<!--
-  <p><a href="{{ url_for('home') }}">Get a new Hunch! | </a><a href="{{ url_for('home') }}">Get the next Hunch!</a></p>
-  -->
+</div>
 
-  </div>
 <p id='sign' style='text-align: center;'><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='http://agconti.com'>Checkout Andrew Conti</a></p>
 
   

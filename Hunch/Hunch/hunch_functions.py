@@ -144,24 +144,53 @@ def find_lunch(search_term):
     '''
     queries yelp to get a list of delicious restaurants
     '''
-    queried_resturants = []
+    
     #get search data from data from yelp
     data = connection(yelp_search(search_term))
     
     #extract data
     combiner = []
-    for b in data['businesses']:
+    queried_resturants = []
+    for i, b in enumerate(data['businesses']):
         #clear out combiner
-        combiner[:] = []
+        if i > 0 :
+            sys.stdout.write(str(queried_resturants[0][0]['name']) + "\n")
+            del combiner
+            combiner = []
         
+        if i == 1:
+            sys.stdout.write(str(queried_resturants[0][0]['name'])+ "\n")
+            
         #convert distance to blocks
         b['distance'] = dist_convert(b['distance'])
         
+        
+
         combiner.append(b) # append search results
         combiner.append(business_profile(b['id'])) # append business profile results
-        
+
+        import sys
+        if i == 1:
+            sys.stdout.write(str(queried_resturants[0][0]['name'])+ "\n")
         queried_resturants.append(combiner) # package for later access
-        #break # limit to 1 query for now
+        sys.stdout.write(str(queried_resturants[0][0]['name'])+ "\n")
+
+
+        
+        # limit to 1 query for now
+
+         
+        # for i in queried_resturants:
+        #     sys.stdout.write(str(len(queried_resturants)))
+        #     sys.stdout.write(i[0]['name'] + "\n")
+        #     sys.stdout.write(combiner[0]['name'] + "\n")
+        
+        # if i == 4:
+        #     sys.stdout.write(queried_resturants)
+        #     break
+
+    
+    sys.stdout.write('done\n')
 
     return queried_resturants
 
