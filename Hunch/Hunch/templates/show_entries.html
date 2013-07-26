@@ -5,41 +5,42 @@
 {% endblock %}
 
 {% block body %}
-{% if queried_resturants != None %}
+{% if queried_resturants %}
   <ul class=entries>
-  {% for r in queried_resturants %}
+ {% set r = queried_resturants %}
     <li>
         <table class=entries>
           <!--<tr>
           <th><h2>{{ r[0]['name'] }}</h2></th>
           </tr>-->
           <tr>
-            <td>
-              <a href="{{ r[0]['url'] }}"><img src="{{ r[0]['image_url'] }}"></a>
+            <td id='result_img'>
+              <a  href="{{ r[0]['url'] }}"><img src="{{ r[0]['image_url'] }}"></a>
             </td>
-            <td>
-                <p>
-                  <a href="{{ r[0]['url'] }}"><h2>{{ r[0]['name'] }}</h2></a>
-                  <img src="{{ r[0]['rating_img_url_small'] }}" style='display: inline-block; float: right; padding-right: 7%;'>after {{ r[0]['review_count'] }} reviews 
-                  <br><a href="tel://{{ r[0]['phone'] }}">{{ r[0]['display_phone'] }}</a>
-                  <br>{{ r[0]['location']['display_address'][0] }}
-                  <br>{{ r[0]['location']['display_address'][1] }}
-                  <br>{{ r[0]['distance'] }} blocks away
-                  <br>{{ r[0]['rating'] }} stars after {{ r[0]['review_count'] }} reviews 
-              </p>  
+            <td >
+                <ul>
+                  <li id='result_info'><a id='result_name' href="{{ r[0]['url'] }}"><h2>{{ r[0]['name'] }}</h2></a></li> 
+                  <li id='result_info'><img id='result_rating' src="{{ r[0]['rating_img_url_large'] }}"></li>
+                  <li id='result_info'>After {{ r[0]['review_count'] }} reviews</li>
+                  <li id='result_info'><a href="tel://{{ r[0]['phone'] }}">{{ r[0]['display_phone'] }}</a></li>
+                  <li id='result_info'>{{ r[0]['location']['display_address'][0] }}</li>
+                  <li id='result_info'>{{ r[0]['location']['display_address'][1] }}</li>
+                  <li id='result_info'>{{ r[0]['distance'] }} blocks away</li>
+                  <li id='result_info'>{{ r[0]['rating'] }} stars after {{ r[0]['review_count'] }} reviews</li><br> 
+              </ul>  
             </td>
           </tr>
           <tr>
             <td>
-              <h2 style='float: left;'>Reviews:</h4>
+              <h2 style='float: left; margin-top: 20px;'>Reviews:</h4>
             </td>
           </tr>
           {% for i in r[1]['reviews'] %}
-          <tr class=reviews>
-            <td>
+          <tr id='reviews'>
+           <td colspan='2' style="padding: 7px;">
               <img src="{{ i['user']['image_url'] }}">
-            </td>
-            <td>
+           <!-- </td>
+            <td> -->
               <h5>{{ i['user']['name'] }} gave it {{ i['rating'] }} stars:</h5>
               <i>"{{ i['excerpt'] }}"</i>
             </td>
@@ -59,18 +60,37 @@
     <p class=weather>Try one of these guys</p>
     <p class=weather>
       <a href='http://www.seamless.com/'><img src="{{ url_for('static', filename='seamless.jpg') }}"></a>
-      <a href='https://www.grubhub.com/'><img src="{{ url_for('static', filename='grubhub.png') }}"></a>'
+      <a href='https://www.grubhub.com/'><img src="{{ url_for('static', filename='grubhub.png') }}"></a>
     </p>
     {% endif %}
-    {% endfor %}
 {% else %}
     <li><em>Unbelievable.  You're that picky. Nothing in New York Pleases you.</em>
 {% endif %}
     </ul>
+<div class=footer>
+<!--
+  <form action="{{ url_for('home') }}" method=post>
+    <dl>
+      <dd id='search_dt'><input type=hidden value="{{ search_val }}" name='past_val' >
+      <dd id='search_dt'><input id='next_hutch' type=submit value="Get the next Hunch!">
+    </dl>
+  </form>
 
-    <div class=footer>
-    <p><a href="{{ url_for('home') }}">Get a new Hunch! | </a><a href="{{ url_for('home') }}">Get the next Hunch!</a></p>
-    <p id=sign><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='agconti.com'>Checkout Andrew Conti</a></p>
-    </div>
+    <form action="{{ url_for('home') }}" method=post>
+    <dl>
+      <dd id='search_dt'><input type=hidden value="{{ search_val }}" name='past_val' >
+      <dd id='search_dt'><input id='next_hutch' type=submit value="Get a new Hunch!">
+    </dl>
+  </form>
+-->
+  <form><input id='next_hutch' type=submit value="Get the next Hunch!"></form>
+  <form><input id='next_hutch' type=submit value="Get a new Hunch!"></form>
+<!--
+  <p><a href="{{ url_for('home') }}">Get a new Hunch! | </a><a href="{{ url_for('home') }}">Get the next Hunch!</a></p>
+  -->
+
+  </div>
+<p id='sign' style='text-align: center;'><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='http://agconti.com'>Checkout Andrew Conti</a></p>
+
   
 {% endblock %}

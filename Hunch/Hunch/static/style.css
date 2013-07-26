@@ -39,13 +39,31 @@ h2              { font-size: 1.2em; }
 .entries td		{ width: 30%;}
 .entries a      {text-decoration: none;}
 
-.reviews h5 	{margin-right: 0; -webkit-margin-after: 0;}
+#result			{font-size: 1em; margin-right: 5px;}
+#result_name	{font-size: 1.6em; float: left;}
+#result_img a img{height: 150px; float: right;}
+#result_info 	{float: left; margin-left: 0; padding: 0;-webkit-margin-after: 0;-webkit-margin-before: 0; list-style: none;}
+#result_rating  {height: 20px;}
 
-.weather 		{text-align: center; font-weight: bold;}
 
-.footer			{text-align: center; padding-top:5px; width: 100%; background: #377ba8; margin-bottom: 0em;}
+#reviews 	    {margin-right: 5px; -webkit-margin-after: 0; background-color: #eee;}
+
+#next_hutch	{
+				  border: 1px solid #FFFFFF;
+				  background: #eee;
+				  color: #377ba8;
+				  font: bold 18px 'Georgia';
+				  padding: 6px;
+				  cursor: pointer;
+				  -webkit-border-radius: 10px;
+				}
+
+
+.weather 		{text-align: center; color: #377ba8; font: bold 1.65em 'Georgia', serif;}
+
+.footer			{text-align: center; padding-top:5px; padding-bottom:5px; width: 100%; background: #377ba8; margin-bottom: 0em;}
 .footer p 		{display: inline-block; -webkit-margin-after: 0;}
-
+.footer form 	{display: inline-block;}
 .footer p a 	{font-family: 'Georgia', serif; 
 					margin: 0; 
 					text-align: center; 
@@ -54,11 +72,11 @@ h2              { font-size: 1.2em; }
 					text-decoration: none;
 				}
 
-#sign			{font-family: 'Georgia', serif; 
-					margin: 0; 
+#sign a 		{font: bold 1em 'Georgia', serif; 
 					text-decoration: none; 
-					font-size: 0.4em; 
 					padding-top: 6px;
+					text-align: center;
+					color: #377ba8;
 				}
 
 .metanav        { text-align: right; font-size: 0.8em; padding: 0.3em; background: #fafafa; }

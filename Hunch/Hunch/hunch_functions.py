@@ -161,7 +161,7 @@ def find_lunch(search_term):
         combiner.append(business_profile(b['id'])) # append business profile results
         
         queried_resturants.append(combiner) # package for later access
-        break # limit to 1 query for now
+        #break # limit to 1 query for now
 
     return queried_resturants
 
