@@ -188,7 +188,7 @@ def get_a_hunch():
              'soup', 'coffee', 'burger',
              'Asian', 'deli', 'bagel',
              'shrimp', 'oyster', 'seafood',
-             'salad', 'frozen', 'spanish'
+             'salad', 'frozen', 'spanish',
              'cold brew','cronut', 'spicy'
              ]
     return choice(words)
