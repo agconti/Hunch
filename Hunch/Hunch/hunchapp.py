@@ -29,8 +29,14 @@ def search_querry():
             return render_template('home.html')
 
         # uses search term to generate a list of restaurants, 
+        queried_restaurants = hf.find_lunch(request.form['search'])
+       
+        # check query integrity, revert to home if query fails or search term is incorrect.
+        if len(queried_restaurants) < 5:
+            return render_template ('home.html')
+
         # and extracts the top rated result
-        queried_restaurants = hf.find_lunch(request.form['search'])[0]
+        queried_restaurants = queried_restaurants[0]
         # gets current weather conditions
         weather = hf.get_weather()
         # evaluates current weather conditions to see if its a nice day to go outside
@@ -53,8 +59,12 @@ def random_search_querry():
     # gets a random search term
     random_search_term = hf.get_a_hunch()
     # uses search term to generate a list of restaurants, 
+    queried_restaurants = hf.find_lunch(random_search_term)
+    # check query integrity, revert to home if query fails or search term is incorrect.
+    if len(queried_restaurants) < 5:
+        return render_template ('home.html')
     # and extracts the top rated result
-    queried_restaurants = hf.find_lunch(random_search_term)[0]
+    queried_restaurants = queried_restaurants[0]
     # gets current weather conditions
     weather = hf.get_weather()
     # evaluates current weather conditions to see if its a nice day to go outside
@@ -64,7 +74,9 @@ def random_search_querry():
                             'show_entries.html', 
                             queried_restaurants=queried_restaurants, 
                             weather=weather, 
-                            walking_day=weather_bool
+                            walking_day=weather_bool,
+                            search_val=random_search_term,
+                            i=0
                             )
 
 @app.route('/results/more_<past_val>_hunches<ind>', methods=['POST'])
