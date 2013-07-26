@@ -14,7 +14,10 @@
 	      <dl>
 	        <dt id='search_tagline'>Give me a hint on what you feel like:
 	        <dd><input type=text size=30 name=search>
-	        <dd id='search_dt'>{% if bad_search %} <p>Protip: try actual words.</p> {% endif %}<input id='search_button' type=submit value="Let's Eat!">
+	        <dd id='search_dt'>
+	        	{% if bad_search %} <p>Protip: try actual words.</p> {% endif %}
+	        	{% if last_result %} <p>I'm out of hunches<br> for what your craving.<br>Please try again.</p> {% endif %}
+	        	<input id='search_button' type=submit value="Let's Eat!">
 	      </dl>
 	    </form>
     </td>
