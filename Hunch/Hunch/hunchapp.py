@@ -26,14 +26,14 @@ def search_querry():
     if request.method == 'POST':
         # handle an empty search request
         if request.form['search'] == '':
-            return render_template('home.html')
+            return render_template('home.html', bad_search=True)
 
         # uses search term to generate a list of restaurants, 
         queried_restaurants = hf.find_lunch(request.form['search'])
        
         # check query integrity, revert to home if query fails or search term is incorrect.
         if len(queried_restaurants) < 5:
-            return render_template ('home.html')
+            return render_template ('home.html', bad_search=True)
 
         # and extracts the top rated result
         queried_restaurants = queried_restaurants[0]
@@ -62,7 +62,7 @@ def random_search_querry():
     queried_restaurants = hf.find_lunch(random_search_term)
     # check query integrity, revert to home if query fails or search term is incorrect.
     if len(queried_restaurants) < 5:
-        return render_template ('home.html')
+        return render_template ('home.html', bad_search=True)
     # and extracts the top rated result
     queried_restaurants = queried_restaurants[0]
     # gets current weather conditions
