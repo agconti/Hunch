@@ -103,7 +103,7 @@ def page_not_found(e):
 if __name__ == '__main__':
         import os  
         import passwords
-        #port = int(os.environ.get('PORT', 33507)) 
-        #app.run(host='0.0.0.0', port=port)
-        #passwords.get_secure_info()
-        app.run(debug=True)
+        port = int(os.environ.get('PORT', 33507)) 
+        app.run(host='0.0.0.0', port=port)
+        passwords.get_secure_info()
+        #app.run(debug=True)
