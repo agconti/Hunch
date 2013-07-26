@@ -131,7 +131,7 @@ def dist_convert(dist_meters):
     '''
     feet_conversion = 3.28
     block_conversion = 264
-    return str(((dist_meters * feet_conversion) / block_conversion))[:4] #return with a max of 4 decimal places
+    return str(((dist_meters * feet_conversion) / block_conversion))[:4] #removes extraneous decimal places
 
 def business_profile(bid):
     '''
@@ -150,49 +150,23 @@ def find_lunch(search_term):
     
     #extract data
     combiner = []
-    queried_resturants = []
+    queried_restaurants = []
     for i, b in enumerate(data['businesses']):
+        
         #clear out combiner
         if i > 0 :
-            sys.stdout.write(str(queried_resturants[0][0]['name']) + "\n")
             del combiner
             combiner = []
-        
-        if i == 1:
-            sys.stdout.write(str(queried_resturants[0][0]['name'])+ "\n")
-            
+
         #convert distance to blocks
         b['distance'] = dist_convert(b['distance'])
-        
-        
 
         combiner.append(b) # append search results
         combiner.append(business_profile(b['id'])) # append business profile results
-
-        import sys
-        if i == 1:
-            sys.stdout.write(str(queried_resturants[0][0]['name'])+ "\n")
-        queried_resturants.append(combiner) # package for later access
-        sys.stdout.write(str(queried_resturants[0][0]['name'])+ "\n")
-
-
-        
-        # limit to 1 query for now
-
-         
-        # for i in queried_resturants:
-        #     sys.stdout.write(str(len(queried_resturants)))
-        #     sys.stdout.write(i[0]['name'] + "\n")
-        #     sys.stdout.write(combiner[0]['name'] + "\n")
-        
-        # if i == 4:
-        #     sys.stdout.write(queried_resturants)
-        #     break
-
     
-    sys.stdout.write('done\n')
+        queried_restaurants.append(combiner) # package for later access
 
-    return queried_resturants
+    return queried_restaurants
 
 ###################################################################
 # Weather Underground Functions
@@ -237,7 +211,7 @@ def get_a_hunch():
              'soup', 'coffee', 'burger',
              'Asian', 'deli', 'bagel',
              'shrimp', 'oyster', 'seafood',
-             'danger', 'tease', 'frozen',
+             'danger', 'frozen', 'spanish'
              'cold brew','cronut', 'spicy'
              ]
     return choice(words)

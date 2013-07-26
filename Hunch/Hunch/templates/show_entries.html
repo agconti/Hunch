@@ -5,14 +5,12 @@
 {% endblock %}
 
 {% block body %}
-{% if queried_resturants %}
+{% if queried_restaurants %}
   <ul class=entries>
- {% set r = queried_resturants %}
+ {% set r = queried_restaurants %}
     <li>
+      <!-- Resturant Result Section -->
         <table class=entries>
-          <!--<tr>
-          <th><h2>{{ r[0]['name'] }}</h2></th>
-          </tr>-->
           <tr>
             <td id='result_img'>
               <a  href="{{ r[0]['url'] }}"><img src="{{ r[0]['image_url'] }}"></a>
@@ -35,6 +33,7 @@
               <h2 style='float: left; margin-top: 20px;'>Reviews:</h4>
             </td>
           </tr>
+          <!-- Reviews section -->
           {% for i in r[1]['reviews'] %}
           <tr id='reviews'>
            <td colspan='2' style="padding: 7px;">
@@ -48,6 +47,7 @@
           {% endfor %}
         </table>
     </li>
+    <!-- Weather footer for inclement weather -->
     {% if not walking_day %}
     <p class=weather><img src="{{ weather['icon_url'] }}"></p>
     <p class=weather>Woah, it feels like {{ weather['feelslike_f'] }} degrees out there!!</p>
@@ -67,15 +67,17 @@
     <li><em>Unbelievable.  You're that picky. Nothing in New York Pleases you.</em>
 {% endif %}
     </ul>
+<!-- Home and Next Buttons for navigation -->
 <div class=footer>
   <form action="{{ url_for('home') }}">
     <input id='next_hutch' type=submit value="Get a new Hunch!">
   </form>
+  {% set results=queried_restaurants %}
   <form action="{{ url_for('more_results', past_val=search_val, ind=i ) }}" method=post>
     <input id='next_hutch' type=submit value="Get the next Hunch!" name='action'>
   </form>
 </div>
-
+<!-- Page Signature -->
 <p id='sign' style='text-align: center;'><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='http://agconti.com'>Checkout Andrew Conti</a></p>
 
   
