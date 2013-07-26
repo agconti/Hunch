@@ -50,6 +50,7 @@ def random_search_querry():
                             weather=weather, 
                             walking_day=weather_bool
                             )
+    
 @app.route('/results/more_<past_val>_hunches<ind>', methods=['POST'])
 def more_results(past_val, ind):
     
@@ -74,7 +75,9 @@ def more_results(past_val, ind):
                                 i=ind 
                                )
 
-
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('home.html')
 
 if __name__ == '__main__':
         import os  
