@@ -83,8 +83,8 @@
     </dl>
   </form>
 -->
-  <form><input id='next_hutch' type=submit value="Get the next Hunch!"></form>
-  <form><input id='next_hutch' type=submit value="Get a new Hunch!"></form>
+  <form action="{{ url_for('home') }}"><input id='next_hutch' type=submit value="Get a new Hunch!"></form>
+  <form action="{{ url_for('more_results', past_val=search_val) }}"><input id='next_hutch' type=submit value="Get the next Hunch!"></form>
 <!--
   <p><a href="{{ url_for('home') }}">Get a new Hunch! | </a><a href="{{ url_for('home') }}">Get the next Hunch!</a></p>
   -->

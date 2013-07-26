@@ -48,9 +48,10 @@ def random_search_querry():
                             weather=weather, 
                             walking_day=weather_bool
                             )
-@app.route('/results/<past_val>', methods=['POST'])
+@app.route('/results', methods=['POST'])
 def more_results(past_val):
-
+    import sys
+    sys.stdout.write(past_val)
     queried_resturants = hf.find_lunch(past_val)[1] 
     weather = hf.get_weather()
     weather_bool = hf.good_enough_to_walk(weather)
@@ -58,7 +59,8 @@ def more_results(past_val):
                            'show_entries.html', 
                             queried_resturants=queried_resturants, 
                             weather=weather, 
-                            walking_day=weather_bool
+                            walking_day=weather_bool,
+                            search_val=past_val
                            )
 
 
