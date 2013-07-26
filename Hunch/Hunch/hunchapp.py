@@ -98,9 +98,9 @@ def more_results(past_val, ind):
 
         weather = hf.get_weather()
         weather_bool = hf.good_enough_to_walk(weather)
-        # for efficiency, I've limited the number of queried restaurants to 5
-        # this handles when we go beyond 5 results by returning us to the home screen.
-        if ind > 4:
+        # for efficiency, I've limited the number of queried restaurants to 4
+        # this handles when we go beyond 4 results by returning us to the home screen.
+        if ind > 3:
             return render_template('home.html', last_resultlast_result=True)
         # renders template, and passes index and past search term for later use
         return render_template(
