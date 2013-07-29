@@ -17,7 +17,7 @@
             </td>
             <td >
                 <ul>
-                  <li id='result_info'><a id='result_name' href="{{ r[0]['url'] }}"><h2>{{ r[0]['name'] }}</h2></a></li> 
+                  <li id='result_info'><a id='result_name' href="{{ r[0]['url'] }}"><h2 id='result_info'>{{ r[0]['name'] }}</h2></a></li> 
                   <li id='result_info'><img id='result_rating' src="{{ r[0]['rating_img_url_large'] }}"></li>
                   <li id='result_info'>After {{ r[0]['review_count'] }} reviews</li>
                   <li id='result_info'><a href="tel://{{ r[0]['phone'] }}">{{ r[0]['display_phone'] }}</a></li>
@@ -78,7 +78,13 @@
   </form>
 </div>
 <!-- Page Signature -->
-<p id='sign' style='text-align: center;'><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='http://agconti.com'>Checkout Andrew Conti</a></p>
+<p id='sign'><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='http://agconti.com'>Checkout Andrew Conti</a></p>
+<form>
+<p id='sign'><input type="radio" name="weather_radio" value="Bad Weather?"></p>
+</form>
+{% if weather_radio %}
+  {% set walking_day = False %}
+{% endif %}
 
   
 {% endblock %}
