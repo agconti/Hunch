@@ -16,15 +16,15 @@
               <a  href="{{ r[0]['url'] }}"><img src="{{ r[0]['image_url'] }}"></a>
             </td>
             <td >
-                <ul>
-                  <li id='result_info'><a id='result_name' href="{{ r[0]['url'] }}"><h2 id='result_info'>{{ r[0]['name'] }}</h2></a></li> 
-                  <li id='result_info'><img id='result_rating' src="{{ r[0]['rating_img_url_large'] }}"></li>
-                  <li id='result_info'>After {{ r[0]['review_count'] }} reviews</li>
-                  <li id='result_info'><a href="tel://{{ r[0]['phone'] }}">{{ r[0]['display_phone'] }}</a></li>
-                  <li id='result_info'>{{ r[0]['location']['display_address'][0] }}</li>
-                  <li id='result_info'>{{ r[0]['location']['display_address'][1] }}</li>
-                  <li id='result_info'>{{ r[0]['distance'] }} blocks away</li>
-                  <li id='result_info'>{{ r[0]['rating'] }} stars after {{ r[0]['review_count'] }} reviews</li><br> 
+                <ul id='result_info'>
+                  <li><a id='result_name' href="{{ r[0]['url'] }}"><h2 id='result_info'>{{ r[0]['name'] }}</h2></a></li> 
+                  <li><img id='result_rating' src="{{ r[0]['rating_img_url_large'] }}"></li>
+                  <li>After {{ r[0]['review_count'] }} reviews</li>
+                  <li><a href="tel://{{ r[0]['phone'] }}">{{ r[0]['display_phone'] }}</a></li>
+                  <li>{{ r[0]['location']['display_address'][0] }}</li>
+                  <li>{{ r[0]['location']['display_address'][1] }}</li>
+                  <li>{{ r[0]['distance'] }} blocks away</li>
+                  <li>{{ r[0]['rating'] }} stars after {{ r[0]['review_count'] }} reviews</li><br> 
               </ul>  
             </td>
           </tr>
@@ -79,12 +79,8 @@
 </div>
 <!-- Page Signature -->
 <p id='sign'><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='http://agconti.com'>Checkout Andrew Conti</a></p>
-<form>
+<form action="{{ url_for('re_render', past_val=search_val, ind=i, weather_bool=walking_day">
 <p id='sign'><input type="radio" name="weather_radio" value="Bad Weather?"></p>
 </form>
-{% if weather_radio %}
-  {% set walking_day = False %}
-{% endif %}
-
   
 {% endblock %}

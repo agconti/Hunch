@@ -19,7 +19,7 @@ h2              { font-size: 1.2em; }
 					margin: 0;
 					color: #377ba8; 
 					padding-right: 4px;
-					margin-top: 20px;
+					margin-top: 32px;
 				}
 
 #search_button	{
@@ -60,7 +60,7 @@ h2              { font-size: 1.2em; }
 #result_name	{ font-size: 1.6em; float: left;}
 #result_img a img{ height: 150px; float: right;}
 
-#result_info 	{
+#result_info li	{
 					float: left; 
 					margin-left: 0; 
 					padding: 0;
@@ -108,7 +108,7 @@ h2              { font-size: 1.2em; }
 					text-decoration: none;
 				}
 
-#sign a 		{
+#sign p a 		{
 					font: bold 1em 'Georgia', serif; 
 					text-decoration: none; 
 					padding-top: 6px;

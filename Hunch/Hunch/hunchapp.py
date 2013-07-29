@@ -109,8 +109,44 @@ def more_results(past_val, ind):
                                 weather=weather, 
                                 walking_day=weather_bool,
                                 search_val=past_val,
+                                i=ind  
+                                )
+        
+@app.route('/results/more_<past_val>_hunches<ind>_bad_weather?<weather_bool>', methods=['Post'])
+def re_render(weather_bool, past_val, ind):
+    '''
+    re-renders the show entries template.
+    for use with bad weather radio switch
+    '''
+    if request.form["action"] == "Get the next Hunch!":
+        
+        # increment the index reference
+        ind = int(ind)
+        ind += 1 
+
+        # gets the the previous list of queried restaurants
+        # by using the last search term (past_val)
+        queried_restaurants = hf.find_lunch(past_val)
+        
+        # gets the ith restaurant in that result 
+        # i is tracked by the ind (index) variable 
+        queried_restaurants = queried_restaurants[ind]
+
+        # for efficiency, I've limited the number of queried restaurants to 4
+        # this handles when we go beyond 4 results by returning us to the home screen.
+        if ind > 3:
+            return render_template('home.html', last_result=True)
+        # renders template, and passes index and past search term for later use
+    
+        return render_template(
+                               'show_entries.html', 
+                                queried_restaurants=queried_restaurants, 
+                                weather=weather, 
+                                walking_day=weather_bool,
+                                search_val=past_val,
                                 i=ind 
                                )
+
 # handles 404 errors
 @app.errorhandler(404)
 def page_not_found(e):
