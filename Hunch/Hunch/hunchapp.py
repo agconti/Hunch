@@ -132,7 +132,8 @@ def re_render(weather_bool, past_val, ind):
         queried_restaurants = queried_restaurants[ind]
 
         weather = hf.get_weather()
-        
+        # set weather_bool to false so we can show the weather
+        weather_bool = False
         # renders template, and passes index and past search term for later use
     
         return render_template(
