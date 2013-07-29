@@ -60,7 +60,8 @@ h2              { font-size: 1.2em; }
 #result_name	{ font-size: 1.6em; float: left;}
 #result_img a img{ height: 150px; float: right;}
 
-#result_info li	{
+#result_info li, li h2	
+				{
 					float: left; 
 					margin-left: 0; 
 					padding: 0;
