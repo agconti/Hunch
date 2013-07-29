@@ -118,7 +118,7 @@ def re_render(weather_bool, past_val, ind):
     re-renders the show entries template.
     for use with bad weather radio switch
     '''
-    if request.form["action"] == "Bad Weather?":
+    if request.form["weather_button"] == "Bad Weather?":
         
         # increment the index reference
         ind = int(ind)
