@@ -112,7 +112,7 @@ def more_results(past_val, ind):
                                 i=ind  
                                 )
 
-@app.route('/results/more_<past_val>_hunches<ind>_bad_weather_<weather_bool>', methods=['Post'])
+@app.route('/results/more_<past_val>_hunches<ind>_bad_weather_<weather_bool>', methods=['POST'])
 def re_render(weather_bool, past_val, ind):
     '''
     re-renders the show entries template.
@@ -123,7 +123,7 @@ def re_render(weather_bool, past_val, ind):
         # increment the index reference
         ind = int(ind)
         ind += 1 
-
+        
         # gets the the previous list of queried restaurants
         # by using the last search term (past_val)
         queried_restaurants = hf.find_lunch(past_val)
