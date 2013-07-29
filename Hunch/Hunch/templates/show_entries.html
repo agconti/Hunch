@@ -79,7 +79,7 @@
 </div>
 <!-- Page Signature -->
 <p id='sign'><a href='https://github.com/agconti/Hunch'> Chekout the source code - </a><a href='http://agconti.com'>Checkout Andrew Conti</a></p>
-<form action="{{ url_for('re_render', past_val=search_val, ind=i, weather_bool=walking_day) }}">
+<form action="{{ url_for('re_render', past_val=search_val, ind=i, weather_bool=walking_day) }}" method=post>
 <p id='sign'><input type="radio" name="weather_radio" value="Bad Weather?"></p>
 </form>
   
