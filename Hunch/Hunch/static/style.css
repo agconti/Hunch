@@ -68,6 +68,7 @@ h2              { font-size: 1.2em; }
 					-webkit-margin-after: 0;
 					-webkit-margin-before: 0; 
 					list-style: none;
+					text-align: left;
 				}
 
 #result_rating  { height: 20px;}
@@ -109,7 +110,8 @@ h2              { font-size: 1.2em; }
 					text-decoration: none;
 				}
 
-#sign p a 		{
+#sign  			{text-align: center;}
+#sign a 		{
 					font: bold 1em 'Georgia', serif; 
 					text-decoration: none; 
 					padding-top: 6px;
