@@ -10,12 +10,15 @@
 	    </form>
     </td>
     <td>
+    	<h1 style="margin-left: 60px;">-OR-</h1>
+    </td>
+    <td>
 	    <form action="{{ url_for('search_querry') }}" method=post>
 	      <dl>
 	        <dt id='search_tagline'>Give me a hint on what you feel like:
 	        <dd><input type=text size=30 name=search>
 	        <dd id='search_dt'>
-	        	{% if bad_search %} <p>Protip: try actual words.</p> {% endif %}
+	        	{% if bad_search %} <p>Pro tip: try actual words.</p> {% endif %}
 	        	{% if last_result %} <p>I'm out of hunches for what your craving.<br>Please try again.</p> {% endif %}
 	        	<input id='search_button' type=submit value="Let's Eat!">
 	      </dl>
