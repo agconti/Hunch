@@ -112,8 +112,8 @@ def more_results(past_val, ind):
                                 i=ind  
                                 )
 
-@app.route('/results/more_<past_val>_hunches<ind>_bad_weather_<weather_bool>', methods=['POST'])
-def re_render(weather_bool, past_val, ind):
+@app.route('/results/more_<past_val>_hunches<ind>_bad_weather', methods=['POST'])
+def re_render(past_val, ind):
     '''
     re-renders the show entries template.
     for use with bad weather button
